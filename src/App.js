@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Home from './sections/Home';
 import Benefits from './sections/Benefits';
 import Industries from './sections/Industries';
+import Features from './sections/Features';
 import Contact from './sections/Contact';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Home />
         <Benefits />
         <Industries />
+        <Features />
         <Contact />
       </main>
       <Footer />
