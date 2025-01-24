@@ -1,4 +1,7 @@
 npx create-react-app app-showcase
 cd app-showcase
-npm install styled-components react-router-dom react-icons framer-motion 
+npm install styled-components react-router-dom react-icons framer-motion gh-pages --save-dev
 mkdir public 
+git add .
+git commit -m "Setup GitHub Pages"
+npm run deploy 

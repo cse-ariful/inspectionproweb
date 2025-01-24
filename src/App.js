@@ -13,6 +13,11 @@ import FAQ from './sections/FAQ';
 import Contact from './sections/Contact';
 
 function App() {
+  // Scroll to top when page loads
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
