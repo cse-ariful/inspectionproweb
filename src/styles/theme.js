@@ -1,28 +1,28 @@
 const theme = {
   light: {
     colors: {
-      primary: '#2563eb',
-      secondary: '#1e40af',
-      text: '#1f2937',
-      lightText: '#6b7280',
-      background: '#ffffff',
-      lightBackground: '#f3f4f6',
-      cardBackground: '#ffffff',
-      border: 'rgba(0, 0, 0, 0.1)',
-      shadow: 'rgba(0, 0, 0, 0.05)'
+      primary: '#0066FF',
+      secondary: '#00C2FF',
+      text: '#1A1A1A',
+      lightText: '#666666',
+      background: '#FFFFFF',
+      lightBackground: '#F8FAFF',
+      cardBackground: '#FFFFFF',
+      border: 'rgba(0, 102, 255, 0.1)',
+      shadow: 'rgba(0, 102, 255, 0.08)'
     },
   },
   dark: {
     colors: {
-      primary: '#3b82f6',
-      secondary: '#60a5fa',
-      text: '#f3f4f6',
-      lightText: '#9ca3af',
-      background: '#111827',
-      lightBackground: '#1f2937',
-      cardBackground: '#1e293b',
-      border: 'rgba(255, 255, 255, 0.1)',
-      shadow: 'rgba(0, 0, 0, 0.3)'
+      primary: '#3385FF',
+      secondary: '#66D9FF',
+      text: '#FFFFFF',
+      lightText: '#B3B3B3',
+      background: '#0A0A0A',
+      lightBackground: '#111111',
+      cardBackground: '#1A1A1A',
+      border: 'rgba(51, 133, 255, 0.15)',
+      shadow: 'rgba(51, 133, 255, 0.15)'
     },
   },
   breakpoints: {

@@ -6,7 +6,7 @@ import theme from './styles/theme';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './sections/Home';
+import ModernHome from './sections/ModernHome';
 import Benefits from './sections/Benefits';
 import Industries from './sections/Industries';
 import Features from './sections/Features';
@@ -25,7 +25,7 @@ const ThemedApp = () => {
       <GlobalStyle />
       <Navbar />
       <main>
-        <Home />
+        <ModernHome />
         <Benefits />
         <Industries />
         <Features />
