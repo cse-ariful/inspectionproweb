@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/inspectionproweb/static/js/main.a2d6f470.js",
+    "main.js": "/inspectionproweb/static/js/main.1e259f25.js",
     "index.html": "/inspectionproweb/index.html",
-    "main.a2d6f470.js.map": "/inspectionproweb/static/js/main.a2d6f470.js.map"
+    "main.1e259f25.js.map": "/inspectionproweb/static/js/main.1e259f25.js.map"
   },
   "entrypoints": [
-    "static/js/main.a2d6f470.js"
+    "static/js/main.1e259f25.js"
   ]
 }
