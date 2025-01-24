@@ -65,8 +65,8 @@ const Benefits = () => {
             as={motion.div}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <IconWrapper>{benefit.icon}</IconWrapper>
             <BenefitTitle>{benefit.title}</BenefitTitle>

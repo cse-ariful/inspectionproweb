@@ -5,27 +5,39 @@ import { motion } from 'framer-motion';
 const Features = () => {
   const features = [
     {
-      title: "AI-Powered Voice-to-Text",
-      description: "Document inspections hands-free with our advanced AI voice-to-text technology, making site audits faster and more efficient than ever.",
-      image: "https://picsum.photos/390/844?random=1",
+      title: "Smart Project Management",
+      description: "Efficiently organize and manage your inspection projects with our intuitive project management interface. Track progress, manage teams, and access projects with ease.",
+      image: `${process.env.PUBLIC_URL}/images/project_list.png`,
       align: "left"
     },
     {
-      title: "Customizable Templates",
-      description: "Choose from 10+ professional templates with complete branding options including custom colors, logos, and cover images to match your brand identity.",
-      image: "https://picsum.photos/390/844?random=2",
+      title: "Professional Report Templates",
+      description: "Choose from multiple professionally designed report templates that can be fully customized to match your brand identity and reporting needs.",
+      image: `${process.env.PUBLIC_URL}/images/report_templates.png`,
       align: "right"
     },
     {
-      title: "Smart Project Management",
-      description: "Efficiently manage your audits with features like bulk project operations, issue duplication, and seamless task management across projects.",
-      image: "https://picsum.photos/390/844?random=3",
+      title: "Advanced Image Annotation",
+      description: "Powerful annotation tools let you highlight issues, add measurements, and provide detailed visual feedback directly on your inspection photos.",
+      image: `${process.env.PUBLIC_URL}/images/annotating_image.png`,
       align: "left"
     },
     {
-      title: "Advanced Image Tools",
-      description: "Enhance your reports with multiple images per issue, GPS tracking, time stamps, and professional annotation tools for comprehensive documentation.",
-      image: "https://picsum.photos/390/844?random=4",
+      title: "Comprehensive Issue Details",
+      description: "Document issues thoroughly with support for multiple images per issue, detailed descriptions, and customizable categories.",
+      image: `${process.env.PUBLIC_URL}/images/issue_details.png`,
+      align: "right"
+    },
+    {
+      title: "Customizable Report Settings",
+      description: "Fine-tune every aspect of your reports, from layout and branding to content organization and presentation style.",
+      image: `${process.env.PUBLIC_URL}/images/report_customize_settings.png`,
+      align: "left"
+    },
+    {
+      title: "Modern Report Previews",
+      description: "Generate professional, polished reports that are easy to read and present your findings effectively.",
+      image: `${process.env.PUBLIC_URL}/images/modern_report_preview.png`,
       align: "right"
     }
   ];
@@ -41,10 +53,10 @@ const Features = () => {
           <FeatureItem
             key={index}
             as={motion.div}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             align={feature.align}
           >
             <FeatureContent align={feature.align}>
