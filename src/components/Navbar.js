@@ -42,7 +42,10 @@ const Navbar = () => {
 };
 
 const Nav = styled.nav`
-  background: ${({ scrolled, theme }) => scrolled ? theme.colors.background : 'transparent'};
+  background: ${({ scrolled, theme }) => 
+    scrolled 
+      ? `linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8))`
+      : 'transparent'};
   height: 80px;
   display: flex;
   justify-content: center;
@@ -52,7 +55,6 @@ const Nav = styled.nav`
   width: 100%;
   z-index: 999;
   transition: all 0.3s ease-in-out;
-  box-shadow: ${({ scrolled }) => scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none'};
   backdrop-filter: ${({ scrolled }) => scrolled ? 'blur(10px)' : 'none'};
 `;
 
@@ -68,8 +70,15 @@ const NavContainer = styled.div`
 const Logo = styled.h1`
   font-size: 1.5rem;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.primary};
+  color: white;
   cursor: pointer;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    color: ${({ theme }) => theme.colors.primary};
+    text-shadow: none;
+  }
 `;
 
 const MenuIcon = styled.div`
@@ -101,13 +110,20 @@ const NavMenu = styled.div`
 `;
 
 const NavLink = styled.a`
-  color: ${({ theme }) => theme.colors.text};
+  color: white;
   font-weight: 500;
   transition: color 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
+    text-shadow: none;
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    color: ${({ theme }) => theme.colors.text};
+    text-shadow: none;
   }
 `;
 
