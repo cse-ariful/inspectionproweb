@@ -1,0 +1,4 @@
+npx create-react-app app-showcase
+cd app-showcase
+npm install styled-components react-router-dom react-icons framer-motion 
+mkdir public 
