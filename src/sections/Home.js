@@ -12,6 +12,9 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
+          <AppIcon>
+            <img src={`${process.env.PUBLIC_URL}/appicon.webp`} alt="Audit Master Icon" />
+          </AppIcon>
           <HeroTitle>Audit Master - Site Check Pro</HeroTitle>
           <HeroSubtitle>
             Your AI-Powered Audit Companion. Transform the way you audit with professional-grade tools designed to save time, improve accuracy, and simplify inspections.
@@ -40,7 +43,7 @@ const Home = () => {
         transition={{ duration: 0.6, delay: 0.3 }}
       >
         <img 
-          src="https://picsum.photos/1200/630?random=1" 
+          src={`${process.env.PUBLIC_URL}/landing_page_image2.jpg`}
           alt="Audit Master Pro Interface"
         />
       </HeroImageContainer>
@@ -59,14 +62,20 @@ const HomeSection = styled.section`
   gap: 40px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    min-height: auto;
     flex-direction: column;
     text-align: center;
-    padding-top: 120px;
+    padding: 100px 20px 60px;
+    gap: 0;
   }
 `;
 
 const HeroContent = styled.div`
   flex: 1;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 20px 0;
+  }
 `;
 
 const HeroTitle = styled.h1`
@@ -132,27 +141,29 @@ const ButtonText = styled.div`
   font-weight: 500;
 `;
 
+const AppIcon = styled.div`
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.5rem;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin: 0 auto 1.5rem auto;
+  }
+`;
+
 const HeroImageContainer = styled.div`
   flex: 1.2;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(
-      135deg,
-      ${({ theme }) => `${theme.colors.primary}15`},
-      ${({ theme }) => `${theme.colors.secondary}15`}
-    );
-    border-radius: 20px;
-  }
 
   img {
     width: 100%;
@@ -162,7 +173,7 @@ const HeroImageContainer = styled.div`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    width: 100%;
+    display: none;
   }
 `;
 

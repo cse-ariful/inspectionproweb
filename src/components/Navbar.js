@@ -31,10 +31,8 @@ const Navbar = () => {
         </MenuIcon>
         <NavMenu isOpen={isOpen}>
           <NavLink onClick={() => scrollToSection('home')}>Home</NavLink>
-          <NavLink onClick={() => scrollToSection('features')}>Features</NavLink>
-          <NavLink onClick={() => scrollToSection('benefits')}>Benefits</NavLink>
+          <NavLink onClick={() => scrollToSection('benefits')}>Key Benefits</NavLink>
           <NavLink onClick={() => scrollToSection('industries')}>Industries</NavLink>
-          <NavLink onClick={() => scrollToSection('faq')}>FAQ</NavLink>
           <NavLink onClick={() => scrollToSection('contact')}>Contact</NavLink>
         </NavMenu>
       </NavContainer>

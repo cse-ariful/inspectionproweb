@@ -5,39 +5,63 @@ import { motion } from 'framer-motion';
 const Features = () => {
   const features = [
     {
-      title: "Smart Project Management",
-      description: "Efficiently organize and manage your inspection projects with our intuitive project management interface. Track progress, manage teams, and access projects with ease.",
+      title: "Efficient Project Management",
+      description: "Organize and manage all your inspection projects in one place. View project status, deadlines, and important details at a glance.",
       image: `${process.env.PUBLIC_URL}/images/project_list.png`,
       align: "left"
     },
     {
-      title: "Professional Report Templates",
-      description: "Choose from multiple professionally designed report templates that can be fully customized to match your brand identity and reporting needs.",
-      image: `${process.env.PUBLIC_URL}/images/report_templates.png`,
+      title: "Detailed Project Information",
+      description: "Access comprehensive project details including client information, site data, and project progress with our intuitive dark mode interface.",
+      image: `${process.env.PUBLIC_URL}/images/project_details_dark.png`,
+      align: "right"
+    },
+    {
+      title: "Comprehensive Issue Tracking",
+      description: "Document and track issues with detailed descriptions, categories, and status updates. Keep everything organized and easily accessible.",
+      image: `${process.env.PUBLIC_URL}/images/issue_details.png`,
+      align: "left"
+    },
+    {
+      title: "Multiple Images Per Issue",
+      description: "Add multiple images to each issue to provide complete visual documentation. Perfect for showing before/after scenarios or different angles.",
+      image: `${process.env.PUBLIC_URL}/images/multiple_image_in_issue.png`,
       align: "right"
     },
     {
       title: "Advanced Image Annotation",
-      description: "Powerful annotation tools let you highlight issues, add measurements, and provide detailed visual feedback directly on your inspection photos.",
+      description: "Highlight problems, add measurements, and provide clear visual feedback with our powerful annotation tools.",
       image: `${process.env.PUBLIC_URL}/images/annotating_image.png`,
       align: "left"
     },
     {
-      title: "Comprehensive Issue Details",
-      description: "Document issues thoroughly with support for multiple images per issue, detailed descriptions, and customizable categories.",
-      image: `${process.env.PUBLIC_URL}/images/issue_details.png`,
+      title: "Customizable Report Templates",
+      description: "Choose from a variety of professional report templates that can be customized to match your brand identity.",
+      image: `${process.env.PUBLIC_URL}/images/report_templates.png`,
       align: "right"
     },
     {
-      title: "Customizable Report Settings",
-      description: "Fine-tune every aspect of your reports, from layout and branding to content organization and presentation style.",
-      image: `${process.env.PUBLIC_URL}/images/report_customize_settings.png`,
+      title: "Modern Report Design",
+      description: "Generate polished, professional reports that present your findings clearly and effectively.",
+      image: `${process.env.PUBLIC_URL}/images/modern_report_preview.png`,
       align: "left"
     },
     {
-      title: "Modern Report Previews",
-      description: "Generate professional, polished reports that are easy to read and present your findings effectively.",
-      image: `${process.env.PUBLIC_URL}/images/modern_report_preview.png`,
+      title: "Flexible Report Customization",
+      description: "Fine-tune every aspect of your reports with our comprehensive customization settings.",
+      image: `${process.env.PUBLIC_URL}/images/report_customize_settings.png`,
+      align: "right"
+    },
+    {
+      title: "Project Options & Settings",
+      description: "Access additional project features including bulk operations, sharing options, and advanced settings.",
+      image: `${process.env.PUBLIC_URL}/images/project_list_options.png`,
+      align: "left"
+    },
+    {
+      title: "Identity Management",
+      description: "Customize identifier settings and manage project metadata for better organization and tracking.",
+      image: `${process.env.PUBLIC_URL}/images/identifier_settings.png`,
       align: "right"
     }
   ];
@@ -105,41 +129,51 @@ const SubTitle = styled.p`
 `;
 
 const FeaturesList = styled.div`
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 120px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
 `;
 
 const FeatureItem = styled.div`
   display: flex;
-  align-items: center;
   flex-direction: ${({ align }) => align === 'right' ? 'row-reverse' : 'row'};
-  gap: 60px;
+  align-items: center;
+  gap: 30px;
+  padding: 30px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     flex-direction: column;
     text-align: center;
-    gap: 30px;
   }
 `;
 
 const FeatureContent = styled.div`
   flex: 1;
-  text-align: ${({ align }) => align};
-  display: flex;
-  flex-direction: column;
-  align-items: ${({ align }) => align === 'right' ? 'flex-end' : 'flex-start'};
+  text-align: ${({ align }) => align === 'right' ? 'right' : 'left'};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     text-align: center;
-    align-items: center;
   }
 `;
 
 const FeatureTitle = styled.h3`
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 20px;
   color: ${({ theme }) => theme.colors.text};
   position: relative;
@@ -149,7 +183,8 @@ const FeatureTitle = styled.h3`
     content: '';
     position: absolute;
     bottom: -10px;
-    left: 0;
+    left: ${({ align }) => align === 'right' ? 'auto' : '0'};
+    right: ${({ align }) => align === 'right' ? '0' : 'auto'};
     width: 60px;
     height: 3px;
     background: ${({ theme }) => theme.colors.primary};
@@ -157,6 +192,7 @@ const FeatureTitle = styled.h3`
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
       left: 50%;
+      right: auto;
       transform: translateX(-50%);
     }
   }
@@ -170,11 +206,12 @@ const FeatureDescription = styled.p`
 `;
 
 const FeatureImageWrapper = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: ${({ align }) => align === 'right' ? 'flex-start' : 'flex-end'};
-  padding: 20px;
-  max-width: 390px;
+  flex: 0.8;
+  max-width: 280px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    max-width: 240px;
+  }
 `;
 
 const FeatureImage = styled.img`
