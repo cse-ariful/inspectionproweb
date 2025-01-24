@@ -7,61 +7,61 @@ const Features = () => {
     {
       title: "Efficient Project Management",
       description: "Organize and manage all your inspection projects in one place. View project status, deadlines, and important details at a glance.",
-      image: `${process.env.PUBLIC_URL}/images/project_list.png`,
+      image: "/images/project_list.png",
       align: "left"
     },
     {
       title: "Detailed Project Information",
       description: "Access comprehensive project details including client information, site data, and project progress with our intuitive dark mode interface.",
-      image: `${process.env.PUBLIC_URL}/images/project_details_dark.png`,
+      image: "/images/project_details_dark.png",
       align: "right"
     },
     {
       title: "Comprehensive Issue Tracking",
       description: "Document and track issues with detailed descriptions, categories, and status updates. Keep everything organized and easily accessible.",
-      image: `${process.env.PUBLIC_URL}/images/issue_details.png`,
+      image: "/images/issue_details.png",
       align: "left"
     },
     {
       title: "Multiple Images Per Issue",
       description: "Add multiple images to each issue to provide complete visual documentation. Perfect for showing before/after scenarios or different angles.",
-      image: `${process.env.PUBLIC_URL}/images/multiple_image_in_issue.png`,
+      image: "/images/multiple_image_in_issue.png",
       align: "right"
     },
     {
       title: "Advanced Image Annotation",
       description: "Highlight problems, add measurements, and provide clear visual feedback with our powerful annotation tools.",
-      image: `${process.env.PUBLIC_URL}/images/annotating_image.png`,
+      image: "/images/annotating_image.png",
       align: "left"
     },
     {
       title: "Customizable Report Templates",
       description: "Choose from a variety of professional report templates that can be customized to match your brand identity.",
-      image: `${process.env.PUBLIC_URL}/images/report_templates.png`,
+      image: "/images/report_templates.png",
       align: "right"
     },
     {
       title: "Modern Report Design",
       description: "Generate polished, professional reports that present your findings clearly and effectively.",
-      image: `${process.env.PUBLIC_URL}/images/modern_report_preview.png`,
+      image: "/images/modern_report_preview.png",
       align: "left"
     },
     {
       title: "Flexible Report Customization",
       description: "Fine-tune every aspect of your reports with our comprehensive customization settings.",
-      image: `${process.env.PUBLIC_URL}/images/report_customize_settings.png`,
+      image: "/images/report_customize_settings.png",
       align: "right"
     },
     {
       title: "Project Options & Settings",
       description: "Access additional project features including bulk operations, sharing options, and advanced settings.",
-      image: `${process.env.PUBLIC_URL}/images/project_list_options.png`,
+      image: "/images/project_list_options.png",
       align: "left"
     },
     {
       title: "Identity Management",
       description: "Customize identifier settings and manage project metadata for better organization and tracking.",
-      image: `${process.env.PUBLIC_URL}/images/identifier_settings.png`,
+      image: "/images/identifier_settings.png",
       align: "right"
     }
   ];
@@ -79,8 +79,11 @@ const Features = () => {
             as={motion.div}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ 
+              duration: 0.6,
+              ease: "easeOut"
+            }}
             align={feature.align}
           >
             <FeatureContent align={feature.align}>
@@ -89,7 +92,7 @@ const Features = () => {
             </FeatureContent>
             <FeatureImageWrapper align={feature.align}>
               <FeatureImage 
-                src={feature.image} 
+                src={`${process.env.PUBLIC_URL}${feature.image}`} 
                 alt={feature.title}
                 as={motion.img}
                 whileHover={{ 
@@ -145,8 +148,8 @@ const FeatureItem = styled.div`
   display: flex;
   flex-direction: ${({ align }) => align === 'right' ? 'row-reverse' : 'row'};
   align-items: center;
-  gap: 30px;
-  padding: 30px;
+  gap: 25px;
+  padding: 25px;
   background: white;
   border-radius: 24px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -207,10 +210,11 @@ const FeatureDescription = styled.p`
 
 const FeatureImageWrapper = styled.div`
   flex: 0.8;
-  max-width: 280px;
+  max-width: 200px;
+  padding: 10px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    max-width: 240px;
+    max-width: 180px;
   }
 `;
 
@@ -219,9 +223,19 @@ const FeatureImage = styled.img`
   height: auto;
   aspect-ratio: 390/844;
   object-fit: cover;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.05),
+    0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+      0 6px 8px rgba(0, 0, 0, 0.05),
+      0 15px 30px rgba(0, 0, 0, 0.12);
+  }
 `;
 
 export default Features; 

@@ -10,6 +10,7 @@ import Benefits from './sections/Benefits';
 import Industries from './sections/Industries';
 import Features from './sections/Features';
 import Contact from './sections/Contact';
+import Reviews from './sections/Reviews';
 
 function App() {
   // Scroll to top when page loads
@@ -26,6 +27,7 @@ function App() {
         <Benefits />
         <Industries />
         <Features />
+        <Reviews />
         <Contact />
       </main>
       <Footer />

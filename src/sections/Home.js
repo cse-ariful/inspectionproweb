@@ -1,133 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaApple, FaChevronDown } from 'react-icons/fa';
-
-const Home = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  
-  const images = [
-    '/home/landing_1.jpeg',
-    '/home/landing_2.jpeg',
-    '/home/landing_3.jpeg',
-    '/home/landing_4.jpeg'
-  ];
-
-  // Preload images
-  useEffect(() => {
-    const preloadImages = async () => {
-      const loadImage = (src) => {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.src = `${process.env.PUBLIC_URL}${src}`;
-          img.onload = resolve;
-          img.onerror = reject;
-        });
-      };
-
-      try {
-        await Promise.all(images.map(loadImage));
-        setImagesLoaded(true);
-      } catch (err) {
-        console.error('Error preloading images:', err);
-        setImagesLoaded(true); // Continue anyway
-      }
-    };
-
-    preloadImages();
-  }, []);
-
-  // Start slideshow only after images are loaded
-  useEffect(() => {
-    if (!imagesLoaded) return;
-
-    const timer = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, [imagesLoaded]);
-
-  // Show loading state until images are ready
-  if (!imagesLoaded) {
-    return (
-      <HomeSection id="home">
-        <LoadingOverlay>
-          <LoadingSpinner />
-        </LoadingOverlay>
-      </HomeSection>
-    );
-  }
-
-  return (
-    <HomeSection id="home">
-      <BackgroundSlider>
-        <AnimatePresence mode='wait'>
-          <BackgroundImage
-            key={currentImageIndex}
-            as={motion.div}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-            $imageUrl={`${process.env.PUBLIC_URL}${images[currentImageIndex]}`}
-          />
-        </AnimatePresence>
-        <Overlay />
-      </BackgroundSlider>
-      
-      <ContentWrapper>
-        <HeroContent>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <AppIcon>
-              <img src={`${process.env.PUBLIC_URL}/appicon.webp`} alt="Audit Master Icon" />
-            </AppIcon>
-            <HeroTitle>Audit Master - Site Check Pro</HeroTitle>
-            <HeroSubtitle>
-              Your AI-Powered Audit Companion. Transform the way you audit with professional-grade tools designed to save time, improve accuracy, and simplify inspections.
-            </HeroSubtitle>
-            <ButtonGroup>
-              <AppStoreButton 
-                href="#" 
-                target="_blank"
-                as={motion.a}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaApple />
-                <ButtonText>
-                  <span>Download on the</span>
-                  App Store
-                </ButtonText>
-              </AppStoreButton>
-            </ButtonGroup>
-          </motion.div>
-        </HeroContent>
-        
-        <CarouselIndicators>
-          {images.map((_, index) => (
-            <Indicator 
-              key={index} 
-              active={index === currentImageIndex}
-              onClick={() => setCurrentImageIndex(index)}
-            />
-          ))}
-        </CarouselIndicators>
-      </ContentWrapper>
-
-      <ScrollIndicator
-        onClick={() => document.getElementById('benefits').scrollIntoView({ behavior: 'smooth' })}
-      >
-        <FaChevronDown />
-      </ScrollIndicator>
-    </HomeSection>
-  );
-};
 
 const floatAnimation = keyframes`
   0% {
@@ -153,98 +27,84 @@ const fadeInOut = keyframes`
   }
 `;
 
-const ScrollIndicator = styled.button`
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: none;
-  border: none;
-  color: ${({ theme }) => theme.colors.primary};
-  cursor: pointer;
-  animation: ${floatAnimation} 2s ease-in-out infinite;
-  transition: color 0.3s ease;
-
-  svg {
-    font-size: 24px;
-    animation: ${fadeInOut} 2s ease-in-out infinite;
-  }
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.secondary};
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    display: none;
-  }
-`;
+const Home = () => {
+  return (
+    <HomeSection id="home">
+      <HeroContent>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <AppIcon>
+            <img src={`${process.env.PUBLIC_URL}/appicon.webp`} alt="Audit Master Icon" />
+          </AppIcon>
+          <HeroTitle>Audit Master - Site Check Pro</HeroTitle>
+          <HeroSubtitle>
+            Your AI-Powered Audit Companion. Transform the way you audit with professional-grade tools designed to save time, improve accuracy, and simplify inspections.
+          </HeroSubtitle>
+          <ButtonGroup>
+            <AppStoreButton 
+              href="#" 
+              target="_blank"
+              as={motion.a}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaApple />
+              <ButtonText>
+                <span>Download on the</span>
+                App Store
+              </ButtonText>
+            </AppStoreButton>
+          </ButtonGroup>
+        </motion.div>
+      </HeroContent>
+      {/* Temporarily commented out
+      <HeroImageContainer
+        as={motion.div}
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+      >
+        <img 
+          src={`${process.env.PUBLIC_URL}/home/landing_1.jpeg`}
+          alt="Audit Master Pro Interface"
+        />
+      </HeroImageContainer>
+      */}
+      <ScrollIndicator
+        onClick={() => document.getElementById('benefits').scrollIntoView({ behavior: 'smooth' })}
+      >
+        <FaChevronDown />
+      </ScrollIndicator>
+    </HomeSection>
+  );
+};
 
 const HomeSection = styled.section`
   position: relative;
   min-height: 100vh;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-`;
-
-const BackgroundSlider = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-`;
-
-const BackgroundImage = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(${props => props.$imageUrl});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  will-change: transform, opacity;
-  transform: translateZ(0);
-`;
-
-const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-`;
-
-const ContentWrapper = styled.div`
-  position: relative;
-  z-index: 2;
-  width: 100%;
+  padding: 100px 20px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 100vh;
-  padding-top: 100px;
-  padding-bottom: 40px;
+  gap: 40px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    min-height: auto;
+    flex-direction: column;
+    text-align: center;
+    padding: 100px 20px 60px;
+    gap: 0;
+  }
 `;
 
 const HeroContent = styled.div`
-  max-width: 600px;
-  color: white;
-  margin-top: 80px;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  flex: 1;
+  padding: 20px 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     text-align: center;
@@ -256,8 +116,9 @@ const HeroTitle = styled.h1`
   font-size: 4rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: white;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary}, ${({ theme }) => theme.colors.secondary});
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 2.5rem;
@@ -266,10 +127,9 @@ const HeroTitle = styled.h1`
 
 const HeroSubtitle = styled.p`
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: ${({ theme }) => theme.colors.lightText};
   margin-bottom: 2rem;
   line-height: 1.6;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 `;
 
 const ButtonGroup = styled.div`
@@ -382,52 +242,55 @@ const AppIcon = styled.div`
   }
 `;
 
-const CarouselIndicators = styled.div`
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-top: auto;
-  padding: 20px 0;
-`;
-
-const Indicator = styled.button`
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  background: ${({ active }) => 
-    active ? 'white' : 'rgba(255, 255, 255, 0.5)'};
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
-
-  &:hover {
-    background: ${({ active }) => 
-      active ? 'white' : 'rgba(255, 255, 255, 0.7)'};
-  }
-`;
-
-const LoadingOverlay = styled.div`
-  position: absolute;
-  inset: 0;
+const HeroImageContainer = styled.div`
+  flex: 1.2;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ theme }) => theme.colors.background};
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    display: none;
+  }
 `;
 
-const LoadingSpinner = styled.div`
-  width: 40px;
-  height: 40px;
-  border: 3px solid ${({ theme }) => theme.colors.lightBackground};
-  border-top-color: ${({ theme }) => theme.colors.primary};
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+const ScrollIndicator = styled.button`
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.colors.primary};
+  cursor: pointer;
+  animation: ${floatAnimation} 2s ease-in-out infinite;
+  transition: color 0.3s ease;
 
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
+  svg {
+    font-size: 24px;
+    animation: ${fadeInOut} 2s ease-in-out infinite;
+  }
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.secondary};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    display: none;
   }
 `;
 

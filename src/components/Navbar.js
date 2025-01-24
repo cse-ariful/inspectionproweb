@@ -24,7 +24,8 @@ const Navbar = () => {
     <Nav scrolled={scrolled}>
       <NavContainer>
         <Logo onClick={() => scrollToSection('home')}>
-          AppName
+          <img src={`${process.env.PUBLIC_URL}/appicon.webp`} alt="Audit Master" />
+          <span>Audit Master</span>
         </Logo>
         <MenuIcon onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <FaTimes /> : <FaBars />}
@@ -34,6 +35,7 @@ const Navbar = () => {
           <NavLink onClick={() => scrollToSection('benefits')}>Key Benefits</NavLink>
           <NavLink onClick={() => scrollToSection('industries')}>Industries</NavLink>
           <NavLink onClick={() => scrollToSection('features')}>Features</NavLink>
+          <NavLink onClick={() => scrollToSection('reviews')}>Reviews</NavLink>
           <NavLink onClick={() => scrollToSection('contact')}>Contact</NavLink>
         </NavMenu>
       </NavContainer>
@@ -44,7 +46,7 @@ const Navbar = () => {
 const Nav = styled.nav`
   background: ${({ scrolled, theme }) => 
     scrolled 
-      ? `linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8))`
+      ? theme.colors.background
       : 'transparent'};
   height: 80px;
   display: flex;
@@ -55,7 +57,8 @@ const Nav = styled.nav`
   width: 100%;
   z-index: 999;
   transition: all 0.3s ease-in-out;
-  backdrop-filter: ${({ scrolled }) => scrolled ? 'blur(10px)' : 'none'};
+  box-shadow: ${({ scrolled }) => 
+    scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none'};
 `;
 
 const NavContainer = styled.div`
@@ -67,23 +70,40 @@ const NavContainer = styled.div`
   padding: 0 2rem;
 `;
 
-const Logo = styled.h1`
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
+const Logo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
   cursor: pointer;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  span {
+    font-size: 1.5rem;
+    font-weight: bold;
     color: ${({ theme }) => theme.colors.primary};
-    text-shadow: none;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    img {
+      width: 28px;
+      height: 28px;
+    }
+    span {
+      font-size: 1.3rem;
+    }
   }
 `;
 
 const MenuIcon = styled.div`
   display: none;
   cursor: pointer;
+  color: ${({ theme }) => theme.colors.text};
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     display: block;
@@ -110,21 +130,18 @@ const NavMenu = styled.div`
 `;
 
 const NavLink = styled.a`
-  color: white;
+  color: ${({ theme }) => theme.colors.text};
   font-weight: 500;
   transition: color 0.3s ease;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
-    text-shadow: none;
   }
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     color: ${({ theme }) => theme.colors.text};
-    text-shadow: none;
   }
 `;
 
-export default Navbar; 
+export default Navbar;
