@@ -100,10 +100,11 @@ const IndustriesGrid = styled.div`
 `;
 
 const IndustryCard = styled.div`
-  background: white;
+  background: ${({ theme }) => theme.colors.cardBackground};
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px ${({ theme }) => theme.colors.shadow};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   transition: all 0.3s ease;
   text-align: center;
 `;

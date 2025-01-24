@@ -1,5 +1,6 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import { ThemeProvider as CustomThemeProvider, useTheme } from './context/ThemeContext';
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/theme';
 
@@ -12,14 +13,15 @@ import Features from './sections/Features';
 import Contact from './sections/Contact';
 import Reviews from './sections/Reviews';
 
-function App() {
-  // Scroll to top when page loads
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+const ThemedApp = () => {
+  const { isDarkMode } = useTheme();
+  const currentTheme = {
+    ...theme,
+    colors: theme[isDarkMode ? 'dark' : 'light'].colors
+  };
 
   return (
-    <ThemeProvider theme={theme}>
+    <StyledThemeProvider theme={currentTheme}>
       <GlobalStyle />
       <Navbar />
       <main>
@@ -31,7 +33,20 @@ function App() {
         <Contact />
       </main>
       <Footer />
-    </ThemeProvider>
+    </StyledThemeProvider>
+  );
+};
+
+function App() {
+  // Scroll to top when page loads
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <CustomThemeProvider>
+      <ThemedApp />
+    </CustomThemeProvider>
   );
 }
 

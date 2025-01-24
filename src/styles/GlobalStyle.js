@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: ${({ theme }) => theme.colors.text};
     background-color: ${({ theme }) => theme.colors.background};
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   a {

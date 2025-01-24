@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaMoon, FaSun } from 'react-icons/fa';
+import { useTheme } from '../context/ThemeContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { isDarkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +39,9 @@ const Navbar = () => {
           <NavLink onClick={() => scrollToSection('features')}>Features</NavLink>
           <NavLink onClick={() => scrollToSection('reviews')}>Reviews</NavLink>
           <NavLink onClick={() => scrollToSection('contact')}>Contact</NavLink>
+          <ThemeToggle onClick={toggleTheme}>
+            {isDarkMode ? <FaSun /> : <FaMoon />}
+          </ThemeToggle>
         </NavMenu>
       </NavContainer>
     </Nav>
@@ -46,7 +51,7 @@ const Navbar = () => {
 const Nav = styled.nav`
   background: ${({ scrolled, theme }) => 
     scrolled 
-      ? theme.colors.background
+      ? theme.colors.cardBackground
       : 'transparent'};
   height: 80px;
   display: flex;
@@ -57,8 +62,10 @@ const Nav = styled.nav`
   width: 100%;
   z-index: 999;
   transition: all 0.3s ease-in-out;
-  box-shadow: ${({ scrolled }) => 
-    scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none'};
+  box-shadow: ${({ scrolled, theme }) => 
+    scrolled ? `0 2px 10px ${theme.colors.shadow}` : 'none'};
+  border-bottom: ${({ scrolled, theme }) => 
+    scrolled ? `1px solid ${theme.colors.border}` : 'none'};
 `;
 
 const NavContainer = styled.div`
@@ -123,9 +130,10 @@ const NavMenu = styled.div`
     top: 80px;
     left: 0;
     width: 100%;
-    background: ${({ theme }) => theme.colors.background};
+    background: ${({ theme }) => theme.colors.cardBackground};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.border};
     padding: 2rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px ${({ theme }) => theme.colors.shadow};
   }
 `;
 
@@ -138,9 +146,22 @@ const NavLink = styled.a`
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
   }
+`;
 
-  @media screen and (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    color: ${({ theme }) => theme.colors.text};
+const ThemeToggle = styled.button`
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.colors.text};
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 

@@ -119,15 +119,16 @@ const BenefitsContainer = styled.div`
 `;
 
 const BenefitCard = styled.div`
-  background: white;
+  background: ${({ theme }) => theme.colors.cardBackground};
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px ${({ theme }) => theme.colors.shadow};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   transition: all 0.3s ease;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 35px ${({ theme }) => theme.colors.shadow};
   }
 `;
 
@@ -162,4 +163,4 @@ const FeatureItem = styled.li`
   }
 `;
 
-export default Benefits; 
+export default Benefits;

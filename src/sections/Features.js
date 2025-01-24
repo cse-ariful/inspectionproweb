@@ -150,14 +150,15 @@ const FeatureItem = styled.div`
   align-items: center;
   gap: 25px;
   padding: 25px;
-  background: white;
+  background: ${({ theme }) => theme.colors.cardBackground};
   border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  box-shadow: 0 10px 30px ${({ theme }) => theme.colors.shadow};
   transition: all 0.3s ease;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 40px ${({ theme }) => theme.colors.shadow};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {

@@ -157,10 +157,11 @@ const ReviewsContainer = styled.div`
 `;
 
 const ReviewCard = styled.div`
-  background: white;
+  background: ${({ theme }) => theme.colors.cardBackground};
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  box-shadow: 0 10px 30px ${({ theme }) => theme.colors.shadow};
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -169,7 +170,7 @@ const ReviewCard = styled.div`
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 40px ${({ theme }) => theme.colors.shadow};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {

@@ -89,9 +89,10 @@ const ContactContainer = styled.div`
 
 const ContactInfo = styled.div`
   padding: 30px;
-  background: white;
+  background: ${({ theme }) => theme.colors.cardBackground};
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  box-shadow: 0 4px 6px ${({ theme }) => theme.colors.shadow};
 `;
 
 const InfoTitle = styled.h3`
@@ -126,28 +127,42 @@ const FormGroup = styled.div`
 
 const Input = styled.input`
   padding: 15px;
-  border: 1px solid #e5e7eb;
+  background: ${({ theme }) => theme.colors.cardBackground};
+  color: ${({ theme }) => theme.colors.text};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary}40;
+  }
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.lightText};
   }
 `;
 
 const TextArea = styled.textarea`
   padding: 15px;
-  border: 1px solid #e5e7eb;
+  background: ${({ theme }) => theme.colors.cardBackground};
+  color: ${({ theme }) => theme.colors.text};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 8px;
   font-size: 1rem;
   resize: vertical;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary}40;
+  }
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.lightText};
   }
 `;
 
